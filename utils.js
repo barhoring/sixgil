@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 const getName = () => {
+  // copied this from browser's Network tab
   return axios
     .get("https://www.fakenamegenerator.com/gen-random-us-us.php", {
       credentials: "include",
@@ -30,13 +31,49 @@ const getName = () => {
 
 const extractName = (markup) => {
   const anchor = `<div class="address">`;
-  const anchorLength = anchor.length;
   const anchorIndex = markup.indexOf(anchor);
   const startIndex = markup.indexOf("<h3>", anchorIndex);
   const endIndex = markup.indexOf("</h3>", anchorIndex);
 
   const name = markup.substring(startIndex + "<h3>".length, endIndex);
-  return name;
+  const nameArray = name.split(" ");
+  const newNameArray = [nameArray[0], nameArray[2]];
+  return newNameArray;
+};
+
+const countNames = (names) => {
+  dict = {};
+  names.forEach((name) => {
+    name.forEach((n) => {
+      if (dict.hasOwnProperty(n)) {
+        dict[n] += 1;
+      } else {
+        dict[n] = 1;
+      }
+    });
+  });
+  return dict;
+};
+
+const objToArray = (obj) => {
+  const arr = Object.keys(obj).map((key) => [key, obj[key]]);
+  arr.sort(compare);
+  return arr;
+};
+
+const compare = (a, b) => {
+  return -1 * (a[1] - b[1]);
+};
+
+const getTopTen = (objArray) => {
+  const result = [];
+  for (let i = 0; i < 10; i++) {
+    result.push(objArray[i]);
+  }
+  return result;
 };
 
 exports.getName = getName;
+exports.countNames = countNames;
+exports.objToArray = objToArray;
+exports.getTopTen = getTopTen;
