@@ -1,0 +1,22 @@
+{
+  "name": "sixgil",
+  "version": "1.0.0",
+  "description": "```bash npm i node main.js ```",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/barhoring/sixgil.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/barhoring/sixgil/issues"
+  },
+  "homepage": "https://github.com/barhoring/sixgil#readme",
+  "dependencies": {
+    "axios": "^0.21.0"
+  }
+}
